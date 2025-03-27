@@ -1,0 +1,38 @@
+void delay1 (unsigned int m){ 
+   unsigned int i;
+    for (i = 0; i < m; i++) {
+       __delay_ms(1);
+    }
+}
+
+void main(void)
+{
+    TRISD = 0 ; // OUTPUT
+   //  TRISC = 3;  
+    TRISCbits.TRISC0 = 1 ; // make C0 pin => input 
+    TRISCbits.TRISC1 = 1 ;
+    PORTD = 0; // initial value 
+    unsigned char RC0OLD = 0; 
+    unsigned char RC1OLD =1 ;
+    unsigned char n = 300 ; // default value
+    while (1)
+    { 
+       if(PORTCbits.RC0 == 1 &&RC0OLD ==0 )  
+       {
+           n = n + 100 ; 
+       } 
+          if(PORTCbits.RC1 == 1 && RC1OLD ==0 && n >=100 )  
+       { 
+              n = n - 100;  
+       }
+
+        // Update values 
+       RC0OLD = RC0; 
+       RC1OLD = RC1 ;
+           
+       // common 
+       delay1(n) ;  
+       PORTD = ~PORTD;  
+    }
+    return;
+}
