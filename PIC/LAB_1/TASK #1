@@ -1,0 +1,9 @@
+void main (void) { 
+TRISB = 0 ; 
+PORTB = 0X0F ; 
+while (1) {
+__delay_ms(500) ; 
+PORTB = ~PORTB ; 
+}
+return 0 ; 
+}
