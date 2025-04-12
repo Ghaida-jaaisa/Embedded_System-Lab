@@ -1,0 +1,14 @@
+void main(void) {
+char nums[10] = {0xc0 , 0xf9 , 0xa4 , 0xb0 , 0x99 , 0x92 , 0x82 , 0xf8 , 0xf8 , 0x80 , 0x98 } ;
+unsigned int i ; 
+TRISA =  0 ; // OUTPUT
+TRISB = 0 ; // OUTPUT
+
+PORTA = 0X03 ; // SEG 0 ON , SEG 1 ON 
+PORTB = nums[4] ; // display number "4"
+__delay_ms(3000) ; 
+
+PORTA = 0 ; // ALL SEGMENTS OFF
+while(1) ; 
+return ; 
+}
