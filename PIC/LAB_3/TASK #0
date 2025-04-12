@@ -1,0 +1,30 @@
+void main(void) {
+
+TRISA = 0 ;
+TRISB = 0 ;
+for (int j = 0 ; j < 6000 ; j++)
+{
+PORTA = 0 ; // ALL SEGMENT OFF
+PORTB = arr[5] ; // display number 5
+PORTA = 1 ; // SEG 0 ON
+__delay_us(25) ; // very very small delay 
+PORTA = 0 ; // ALL SEGMENTS OFF
+PORTB = arr[9]; //  display number 5
+PORTA = 2 ; // SEG 1 ON
+__delay_us(25) ;
+}
+PORTA = 0 ; // ALL SEGMENTS OFF
+while(1) ;
+return ;
+}
+
+
+/* 
+Important !!!!
+How to count number of iteration in for loop  
+3 seconds = 3 000 000 us 
+total delay in loop = 25 us + 25 us = 50 us
+then 
+number of iteration = 3 000 000 us / 50 us = 6000 
+*/
+
