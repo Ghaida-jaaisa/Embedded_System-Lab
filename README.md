@@ -10,6 +10,9 @@ Task1: Connect the leds to PORTD and turn on one of the leds. The led is shifted
 Task2: Connect the leds to PORTD and the switches to PORTC and blink all leds every 0.3 second. Each time button RC0 is pressed, the switching time is increased by 100 ms. Each time button RC1 is pressed, the switching time is decreased by 100 ms.   
 
 ### LAB 3 -- 7 Segment
+#### TASK #0
+Show the number 59 for 3 seconds then turn off the display.
+
 #### TASK #1
 Show the number 44 for three seconds then turn off the display.
 
