@@ -1,1 +1,23 @@
+void main(void) {
+char nums[10] = {0xc0 , 0xf9 , 0xa4 , 0xb0 , 0x99 , 0x92 , 0x82 , 0xf8 , 0xf8 , 0x80 , 0x98 } ;
+unsigned int i , j ; 
+TRISA = 0 ;
+TRISB = 0 ;
 
+while (1) {
+for (int i = 0 ; i <= 9 ; i++) {
+for (int j = 0 ; j <= 12000 ; j++)
+{
+PORTA = 0 ;
+PORTB = nums[i] ; 
+PORTA = 1 ; // SEG 0 ON 
+__delay_us(25) ; 
+PORTA = 0 ; // ALL SEGMENTS OFF 
+PORTB = 0XC0 ; 
+PORTA = 2 ; // SEG 1 ON
+__delay_us(25) ;
+}
+}
+}
+return ; 
+}
