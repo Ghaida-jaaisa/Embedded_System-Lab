@@ -1,5 +1,6 @@
 void main(void) {
-
+char arr[10] = {0xc0 , 0xf9 , 0xa4 , 0xb0 , 0x99 , 0x92 , 0x82 , 0xf8 ,  0x80 , 0x98 } ;
+              // 0      1      2      3      4      5      6      7       8      9       
 TRISA = 0 ;
 TRISB = 0 ;
 for (int j = 0 ; j < 6000 ; j++)
@@ -17,6 +18,7 @@ PORTA = 0 ; // ALL SEGMENTS OFF
 while(1) ;
 return ;
 }
+
 
 
 /* 
