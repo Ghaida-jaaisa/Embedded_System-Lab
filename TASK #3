@@ -1,0 +1,53 @@
+#include <xc.h>
+#include <pic18f4550.h> 
+
+#pragma config PBADEN	= OFF 
+#pragma config FOSC 	= HS
+#pragma config PWRT 	= OFF
+#pragma config BOR 		= OFF
+#pragma config ICPRT 	= OFF
+#pragma config LVP 		= OFF
+#pragma config WDT 		= OFF
+#pragma config DEBUG	= OFF
+#pragma config CPUDIV	= OSC1_PLL2	
+
+
+#define _XTAL_FREQ 8000000  
+
+void main(void)
+{
+ char nums[10] = {0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x98};
+    TRISA = 0; // SEG
+    TRISB = 0; // OUTPUT 
+    TRISC = 0XFF ; 
+    int RC6old = 0;
+    int RC7old = 0;
+    int index = 4;
+    PORTA = 1;  // SEG 0 ON 
+    while(1){
+           if (index == 10 || index == -1) {
+            index = 4 ;
+        }
+        PORTB = nums[index];
+        // WHEN SW 6 PRESSED 
+        if (PORTCbits.RC6 ==  1 && RC6old == 0){
+            if (index <= 9)
+            {   
+                index++;
+            }
+            // WHEN SW 7 PRESSED
+        } 
+        
+        else if (PORTCbits.RC7 ==  1 && RC7old == 0){
+            if (index >= 0){
+                index--;
+            }
+        }
+        RC6old = PORTCbits.RC6;
+        RC7old = PORTCbits.RC7;
+        __delay_ms(2);
+    }
+    
+    return;
+}
+
