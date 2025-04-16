@@ -19,6 +19,9 @@ Show the number 44 for three seconds then turn off the display.
 #### TASK #2
 Show the numbers 00, 10, 20, ....90, 00, etc. Change the number every 0.6 Seconds.
 
+#### Task #3
+Connect the switches and combo board and display the number 4. Each time SW6 is pressed, the number is incremnted (up to 9). Each time SW7 is pressed, the number is decremented (down to 0). 
+
 
 
 
