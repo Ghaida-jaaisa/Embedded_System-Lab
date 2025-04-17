@@ -3,7 +3,7 @@
 ## PIC
 
 ### LAB 1 || [Open Folder](./PIC/LAB_1/)
-#### TASK #1 || [Open File](./PIC/LAB_1/TASK%20#1)
+#### TASK #1  ||  [Open File](./PIC/LAB_1/TASK%20%231)
 Task1: Connect the leds to the PIC programmer. Turn on the four left leds and turn off the four right leds for 0.5 seconds. Then keep alternating between the right and left leds.
 
 ---
