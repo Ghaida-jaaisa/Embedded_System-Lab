@@ -1,0 +1,33 @@
+#include <xc.h>
+#include <pic18f4550.h> 
+
+#pragma config PBADEN	= OFF 
+#pragma config FOSC 	= HS
+#pragma config PWRT 	= OFF
+#pragma config BOR 		= OFF
+#pragma config ICPRT 	= OFF
+#pragma config LVP 		= OFF
+#pragma config WDT 		= OFF
+#pragma config DEBUG	= OFF
+#pragma config CPUDIV	= OSC1_PLL2	
+#define _XTAL_FREQ 8000000  
+void main(void)
+{
+    TRISB = 0XF0 ; // 
+    TRISD = 0 ; 
+    PORTD = 0 ;
+    while (1)
+    {
+        PORTBbits.RB0 = 0 ;
+        PORTBbits.RB1 = 1 ; // ON
+        PORTBbits.RB2 = 0 ;
+        __delay_ms(2);
+        if (PORTBbits.RB4) {
+            PORTD = 0XFF ;
+        }
+          if (PORTBbits.RB5) {
+            PORTD = 00 ;
+        }
+    }
+    return;
+}
