@@ -1,0 +1,61 @@
+#include <xc.h>
+#include <pic18f4550.h> 
+
+#pragma config PBADEN	= OFF 
+#pragma config FOSC 	= HS
+#pragma config PWRT 	= OFF
+#pragma config BOR 		= OFF
+#pragma config ICPRT 	= OFF
+#pragma config LVP 		= OFF
+#pragma config WDT 		= OFF
+#pragma config DEBUG	= OFF
+#pragma config CPUDIV	= OSC1_PLL2	
+
+
+#define _XTAL_FREQ 8000000  
+int delay = 800; // START WITH DELAY = 800ms
+
+void my_delay(int delay) {
+    int i;
+    for (i = 0; i < delay; i++) {
+        __delay_ms(1);
+    }
+}
+void __interrupt() routines(void) {
+
+    if (INTCONbits.INT0IF) {
+        delay += 100;
+        INTCONbits.INT0IF = 0;
+    }
+    if (INTCON3bits.INT2IF) {
+        delay -= 100;
+        INTCON3bits.INT2IF = 0;
+        if(delay < 0 ) {
+            delay = 100 ; 
+        }
+    }
+
+}
+
+void main(void) { 
+    TRISD = 0;
+    PORTD = 0; // LED OFF
+
+    TRISBbits.TRISB0 = 1; // SW 0 ON
+    TRISBbits.TRISB2 = 1; // SW 2 ON
+
+
+    INTCONbits.INT0IE = 1; // ENABLE INT 1
+    INTCON3bits.INT2IE = 1; // ENABLE INT 2
+
+    INTCONbits.GIE = 1; // ENABLE ALL 
+
+    while (1) {
+        PORTD = 0XFF;
+        my_delay(delay);
+        PORTD = 0;
+        my_delay(delay);
+    }
+    return;
+}
+
