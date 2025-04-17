@@ -1,0 +1,48 @@
+#include <xc.h>
+#include <pic18f4550.h> 
+
+#pragma config PBADEN	= OFF 
+#pragma config FOSC 	= HS
+#pragma config PWRT 	= OFF
+#pragma config BOR 		= OFF
+#pragma config ICPRT 	= OFF
+#pragma config LVP 		= OFF
+#pragma config WDT 		= OFF
+#pragma config DEBUG	= OFF
+#pragma config CPUDIV	= OSC1_PLL2	
+#define _XTAL_FREQ 8000000  
+void main(void)
+{
+    TRISB = 0XF0 ; // 
+    TRISD = 0 ; 
+    PORTD = 0 ;
+    while (1)
+    {
+       // case 5
+        PORTBbits.RB0 = 0 ;
+        PORTBbits.RB1 = 1 ;  // COL 2 ON
+        PORTBbits.RB2 = 0 ;
+        __delay_ms(2);
+        if (PORTBbits.RB5) {
+            PORTD = 0b00100000 ; // TURN LED 5
+        }
+        // CASE 6
+        PORTBbits.RB0 = 0 ;
+        PORTBbits.RB1 = 0 ; 
+        PORTBbits.RB2 = 1 ;
+           __delay_ms(2);
+          if (PORTBbits.RB5) {
+             PORTD = 0b01000000 ; // LED 6 ON 
+        }
+
+        // CASE *
+        PORTBbits.RB0 = 1 ;
+        PORTBbits.RB1 = 0 ; 
+        PORTBbits.RB2 = 0 ;
+        __delay_ms(2);
+         if (PORTBbits.RB7) {
+            PORTD = 0XFF ; // ALL LEDS ON
+        }   
+    }
+    return;
+}
